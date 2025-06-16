@@ -3,24 +3,18 @@
 # p_level: cuántas preguntas hay por nivel (1,2 o 3)
 
 def choose_level(n_pregunta, p_level):
-    numero_preg=[1,2,3]
-    nivel_complex=[0,1,2]
-    if p_level not in numero_preg:
-           print(f"El n° de preguntas debe ser 1, 2 o 3, no {p_level}")
-    if n_pregunta not in nivel_complex:
-        print(f"El nivel de complejidad debe clasificarse como 0, 1 o 2, no {n_pregunta}")
-        return[] ## se aplica para que entregue None ya que se tuvo problemas dejandolo abierto, sin return
-    inicio = n_pregunta * p_level + 1 ## se establecen los parámetros del rango
-    fin = inicio + p_level - 1
+    niveles = ["basicas", "intermedias", "avanzadas"]
+    bloque = (n_pregunta - 1) // p_level
+    if bloque < 0:
+        bloque = 0
+    elif bloque >= len(niveles):
+        bloque = len(niveles) - 1
+    return niveles[bloque]
 
-    return list(range(inicio, fin + 1))
-
-if __name__ == "__main__": # evaluación del código
+if __name__ == "__main__":
+    # Prueba de retorno de niveles según el número de pregunta
+    p_level = int(input("¿Cuántas preguntas por nivel (1, 2 o 3)? "))
     
-    preguntas = int(input("¿Cuántas preguntas deseas por nivel (1,2 o 3)?: "))
-    nivel  = int(input("¿Qué nivel? 0=básicas, 1=intermedias, 2=avanzadas: "))
-    lista_num  = choose_level(nivel,preguntas)
-    if lista_num:
-        print(f"Nivel {nivel} con {preguntas} preguntas → preguntas a responder son: {lista_num}")
-    else:
-        print("No se pudieron calcular las preguntas debido a una entrada inválida")
+    for n_pregunta in range(1, 3 * p_level + 1):
+        nivel = choose_level(n_pregunta, p_level)
+        print(f"Pregunta {n_pregunta} → Nivel: {nivel}")

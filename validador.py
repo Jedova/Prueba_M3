@@ -2,9 +2,9 @@
 def validate(opciones, eleccion):
     # Definir validación de eleccion
    while eleccion not in opciones: ##se crea un mientras elección no este en opciones
-    print(f"Opción no válida, ingrese una de las opciones válidas: {opciones}") ## entrega error y devuelve al bucle
-    eleccion = input("mi respuesta es: ") ##solicita incluir respuesta
-    return eleccion
+        print(f"Opción no válida, ingrese una de las opciones válidas: {opciones}") ## entrega error y devuelve al bucle
+        eleccion = input("mi respuesta es: ") ##solicita incluir respuesta
+   return eleccion
 
 if __name__ == "__main__": ##permite probar manualmente pero evita que se exporte el código desde la página main
     
